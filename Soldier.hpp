@@ -18,7 +18,7 @@ class Soldier{
             teamPlayer=tp;
         }
 
-    public:
-        virtual void action(std::pair<int,int> source,std::vector<std::vector<Soldier*>> board)=0;
+       // virtual void act(std::pair<int,int> source,std::vector<std::vector<Soldier*>> board)=0;
+        virtual void act(std::pair<int,int> source,std::vector<std::vector<Soldier*>> board)=0;
 
 };

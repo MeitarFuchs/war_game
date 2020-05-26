@@ -1,6 +1,3 @@
-//
-// Created by meitarfuchs on 20/05/2020.
-//
 
 #ifndef WARGAME_PARAMEDICCOMMANDER_HPP
 #define WARGAME_PARAMEDICCOMMANDER_HPP
@@ -12,5 +9,5 @@
 class ParamedicCommander : public Soldier{
 public:
     ParamedicCommander(int num):Soldier(200,999,num){}
-    void Soldier::action(std::pair<int,int> src,std::vector<std::vector<Soldier*>> board) override{;}
+    void act(std::pair<int,int> source,std::vector<std::vector<Soldier*>>board) override {}
 };

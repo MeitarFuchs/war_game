@@ -13,5 +13,6 @@
 class Paramedic : public Soldier{
 public:
     Paramedic(int num):Soldier(100,999,num){}
-    void Soldier::action(std::pair<int,int> source,std::vector<std::vector<Soldier*>> board) override{}
+    void act(std::pair<int,int> source,std::vector<std::vector<Soldier*>> board) override {}
+
 };
