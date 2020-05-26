@@ -248,7 +248,7 @@ TEST_CASE("stopid tests") {
     // Adding players for team 1
     board[{1, 1}] = new FootSoldier(1);
     CHECK(board.has_soldiers(1) == true);
-    board[{3, 3}] = new FootCommander(1);
+    board[{3, 3}] = new FootSoldier(1);
     CHECK(board.has_soldiers(1) == true);
     board[{5, 5}] = new FootSoldier(1);
     CHECK(board.has_soldiers(1) == true);
