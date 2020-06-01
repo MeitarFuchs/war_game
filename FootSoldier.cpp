@@ -23,9 +23,9 @@ std::pair<int,int> FootSoldier::closeToAttack (std::pair<int,int> src,const std:
             {
                 dis= pow(src.first-i,2) + pow(src.second-j,2); //calculate the distance
                 dis= sqrt(dis);
-                if(dis<min)
+                if(dis<closer)
                 {
-                    closer=distance;
+                    closer=dis;
                     dst.first=i;
                     dst.second=j;
                 }
@@ -46,7 +46,7 @@ void FootSoldier::act(std::pair<int,int> src,std::vector<std::vector<Soldier*>> 
 
     board[playerToAttack.first][playerToAttack.second]->healthPoints= leftLife-damage; //set the life points
 
-    if(board[toAttack.first][toAttack.second]->healthPoints <= 0) //check if the player need to died
+    if(board[playerToAttack.first][playerToAttack.second]->healthPoints <= 0) //check if the player need to died
     {
         delete board[playerToAttack.first][playerToAttack.second];
         board[playerToAttack.first][playerToAttack.second]= nullptr;

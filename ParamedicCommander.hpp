@@ -1,6 +1,8 @@
 
 #include "Soldier.hpp"
-#define MAX_HEALTH_POINTS=200;
+#include <iostream>
+#include <typeinfo>
+#define MAX_HEALTH_POINTS 200;
 
 class ParamedicCommander : public Soldier{
 public:

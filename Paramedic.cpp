@@ -10,9 +10,9 @@ void Paramedic::act(std::pair<int,int> src,std::vector<std::vector<Soldier*>> bo
         team=2;
     else
         team=1;
-    for(int i=src.first-1; i=<src.first+1; i++)
+    for(int i=src.first-1; i<=src.first+1; i++)
     {
-        for (int j = src.second - 1; j =<src.second + 1; j++)
+        for (int j = src.second - 1; j <=src.second+ 1; j++)
         {
             if ((board[i][j] != nullptr) && (board[i][j]->teamPlayer == team))
                 maxHealthPoints(board[i][j]);
@@ -20,7 +20,7 @@ void Paramedic::act(std::pair<int,int> src,std::vector<std::vector<Soldier*>> bo
     }
 }
 
-void Paramedic::maxHealthPoints(std::pair<int,int> src)
+void Paramedic::maxHealthPoints(Soldier* src)
 {
-    src->healthPoints=MAX_HEALTH_POINTS;
+    src->healthPoints= MAX_HEALTH_POINTS;
 }

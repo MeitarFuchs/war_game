@@ -48,13 +48,13 @@ void SniperCommander::act(std::pair<int,int> src,std::vector<std::vector<Soldier
 
     board[playerToAttack.first][playerToAttack.second]->healthPoints= leftLife-damage; //set the life points
 
-    if(board[toAttack.first][toAttack.second]->healthPoints<=0) //check if the player need to died
+    if(board[playerToAttack.first][playerToAttack.second]->healthPoints<=0) //check if the player need to died
     {
         delete board[playerToAttack.first][playerToAttack.second];
         board[playerToAttack.first][playerToAttack.second]= nullptr;
     }
 
-    int team= src->teamPlayer;
+    int team= board[src.first][src.second]->teamPlayer;
 
     allSniperAct(team,src,board);
 }
@@ -63,9 +63,12 @@ void SniperCommander::allSniperAct(int team,std::pair<int,int> src, std::vector<
 {
     for(int i=0; i<board.size(); i++) {
         for (int j = 0; j < board[i].size(); j++) {
-            Sniper* s=ststic_cast<Sniper*>(board[i][j]);
-            if ((board[i][j]!=nullptr)&&(board[i][j]->teamPlayer==team)&&(board[i][j]!=src)&&( s!= nullptr)) {
-                act(board[i][j],board);
+            Sniper* s=static_cast<Sniper*>(board[i][j]);
+            if ((board[i][j]!=nullptr)&&(board[i][j]->teamPlayer==team)&&( s!= nullptr)) {
+                std::pair<int,int> loc;
+                loc.first=i;
+                loc.second=j;
+                act(loc,board);
             }
         }
     }

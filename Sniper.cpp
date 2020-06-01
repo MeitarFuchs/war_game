@@ -44,7 +44,7 @@ void Sniper::act(std::pair<int,int> src,std::vector<std::vector<Soldier*>> board
 
     board[playerToAttack.first][playerToAttack.second]->healthPoints= leftLife-damage; //set the life points
 
-    if(board[toAttack.first][toAttack.second]->healthPoints <= 0) //check if the player need to died
+    if(board[playerToAttack.first][playerToAttack.second]->healthPoints <= 0) //check if the player need to died
     {
         delete board[playerToAttack.first][playerToAttack.second];
         board[playerToAttack.first][playerToAttack.second]= nullptr;

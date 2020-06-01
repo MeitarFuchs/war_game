@@ -3,6 +3,7 @@
 //
 
 #include "FootCommander.hpp"
+#include "FootSoldier.hpp"
 
 std::pair<int,int> FootCommander::closeToAttack (std::pair<int,int> src,const std::vector<std::vector<Soldier*>>& board)
 {
@@ -24,9 +25,9 @@ std::pair<int,int> FootCommander::closeToAttack (std::pair<int,int> src,const st
             {
                 dis= pow(src.first-i,2) + pow(src.second-j,2); //calculate the distance
                 dis= sqrt(dis);
-                if(dis<min)
+                if(dis<closer)
                 {
-                    closer=distance;
+                    closer=dis;
                     dst.first=i;
                     dst.second=j;
                 }
@@ -47,13 +48,13 @@ void FootCommander::act(std::pair<int,int> src,std::vector<std::vector<Soldier*>
 
     board[playerToAttack.first][playerToAttack.second]->healthPoints= leftLife-damage; //set the life points
 
-    if(board[toAttack.first][toAttack.second]->healthPoints <= 0) //check if the player need to died
+    if(board[playerToAttack.first][playerToAttack.second]->healthPoints <= 0) //check if the player need to died
     {
         delete board[playerToAttack.first][playerToAttack.second];
         board[playerToAttack.first][playerToAttack.second]= nullptr;
     }
 
-    int team= src->teamPlayer;
+    int team= board[src.first][src.second]->teamPlayer;
 
     allFootSoldierAct(team,src,board);
 }
@@ -63,9 +64,12 @@ void FootCommander::allFootSoldierAct(int team,std::pair<int,int> src, std::vect
 {
     for(int i=0; i<board.size(); i++) {
         for (int j = 0; j < board[i].size(); j++) {
-            FootSoldier* f=ststic_cast<FootSoldier*>(board[i][j]);
-            if ((board[i][j]!=nullptr)&&(board[i][j]->teamPlayer==team)&&(board[i][j]!=src)&&( f!= nullptr)) {
-                act(board[i][j],board);
+            FootSoldier* f=static_cast<FootSoldier*>(board[i][j]);
+            if ((board[i][j]!=nullptr)&&(board[i][j]->teamPlayer==team)&&( f!= nullptr)) {
+                std::pair<int,int> loc;
+                loc.first=i;
+                loc.second=j;
+                act(loc,board);
             }
         }
     }
